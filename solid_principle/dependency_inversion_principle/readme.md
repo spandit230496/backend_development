@@ -1,5 +1,3 @@
-Here is the **DIP explanation and Python code in `.md` format** so you can save it as a Markdown file.
-
 # Dependency Inversion Principle (DIP) in Python
 
 ## Definition
@@ -12,6 +10,14 @@ The **Dependency Inversion Principle (DIP)** states:
 4. Details should depend on abstractions.
 
 ---
+
+# High-Level Module
+
+Contains business logic and core application rules.
+
+# Low-Level Module
+
+Handles implementation details like database, API calls, file handling.
 
 # 1. DIP Violation (Wrong Design)
 
