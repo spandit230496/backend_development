@@ -41,8 +41,3 @@ class OptionalStep:
         return self.request
 
 
-class HTTPRequestBuilder:
-
-    @staticmethod
-    def builder():
-        return URLStep(HTTPRequest())
