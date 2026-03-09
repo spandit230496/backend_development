@@ -1,80 +1,98 @@
-# Singleton Design Pattern (Python)
+# Singleton Design Pattern (Java)
 
 ## Introduction
 
-The **Singleton Design Pattern** ensures that a class has **only one instance** and provides a **global point of access** to that instance.
+The **Singleton Design Pattern** ensures that a class has **only one instance** and provides a **global access point** to that instance.
 
 In simple terms:
 
-> A Singleton class allows the creation of **only one object**. If another object is requested, the same existing instance is returned.
+> A Singleton class allows only **one object to be created**. If another object is requested, the same existing object is returned.
 
-This pattern is commonly used in:
+This pattern is widely used in real-world systems where **a single shared resource** is required.
 
-* Logging systems
-* Database connections
-* Configuration managers
-* Cache managers
+Common examples:
+
+* Logger
+* Database Connection
+* Configuration Manager
+* Cache Manager
 
 ---
 
-# Steps to Create a Singleton Class
+# Steps to Create a Singleton Class (Java)
 
-To implement a Singleton class, follow these steps:
+### Step 1: Make the Constructor Private
 
-### Step 1: Create a Class
+The constructor must be **private** so that no other class can create objects using `new`.
 
-Define the class normally.
-
-### Step 2: Create a Static Variable
-
-Create a class-level variable to store the single instance.
-
-```
-_instance = None
+```java
+private Singleton() {}
 ```
 
-This variable will hold the only object of the class.
+---
+
+### Step 2: Create a Static Instance Variable
+
+Create a **static variable** that will store the single instance of the class.
+
+```java
+private static Singleton instance;
+```
 
 ---
 
-### Step 3: Control Object Creation
+### Step 3: Provide a Public Static Method
 
-Override the `__new__()` method to control object creation.
+Create a method (usually `getInstance()`) that returns the instance.
 
-Python calls `__new__()` before `__init__()` when creating an object.
-
-Inside this method:
-
-* Check if an instance already exists.
-* If not, create a new object.
-* If yes, return the existing object.
+* If the instance does not exist → create it.
+* If it exists → return the existing one.
 
 ---
 
-### Step 4: Return the Existing Instance
+### Step 4: Return the Same Instance Every Time
 
-Always return the stored instance so that no new object is created.
+Ensure that the same object is returned for every request.
 
 ---
 
-# Singleton Implementation in Python
+# Basic Singleton Implementation (Lazy Initialization)
 
-```python
-class Singleton:
-    _instance = None   # class variable to store the single instance
+```java
+class Singleton {
 
-    def __new__(cls):
-        if cls._instance is None:
-            print("Creating new instance")
-            cls._instance = super().__new__(cls)
-        return cls._instance
+    private static Singleton instance;
 
+    private Singleton() {
+        System.out.println("Singleton instance created");
+    }
+
+    public static Singleton getInstance() {
+
+        if (instance == null) {
+            instance = new Singleton();
+        }
+
+        return instance;
+    }
+}
+```
+
+---
 
 # Usage
-obj1 = Singleton()
-obj2 = Singleton()
 
-print(obj1 is obj2)
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        Singleton s1 = Singleton.getInstance();
+        Singleton s2 = Singleton.getInstance();
+
+        System.out.println(s1 == s2);
+    }
+}
 ```
 
 ---
@@ -82,101 +100,173 @@ print(obj1 is obj2)
 # Output
 
 ```
-Creating new instance
-True
+Singleton instance created
+true
 ```
 
 Explanation:
 
-* The object is created only once.
-* The second call returns the same instance.
-* Therefore `obj1 is obj2` returns **True**.
+* The constructor is called **only once**.
+* Both `s1` and `s2` refer to the **same object**.
 
 ---
 
-# How It Works
+# Thread-Safe Singleton
 
-1. First object creation:
+In multithreading environments, two threads may create multiple instances simultaneously.
 
-   * `_instance` is `None`
-   * A new object is created
-   * Stored in `_instance`
+To prevent this, we use **synchronization**.
 
-2. Second object creation:
+```java
+class Singleton {
 
-   * `_instance` already exists
-   * The same instance is returned
+    private static Singleton instance;
+
+    private Singleton() {}
+
+    public static synchronized Singleton getInstance() {
+
+        if (instance == null) {
+            instance = new Singleton();
+        }
+
+        return instance;
+    }
+}
+```
+
+---
+
+# Double Checked Locking (Better Performance)
+
+To avoid unnecessary synchronization overhead:
+
+```java
+class Singleton {
+
+    private static volatile Singleton instance;
+
+    private Singleton() {}
+
+    public static Singleton getInstance() {
+
+        if (instance == null) {
+
+            synchronized (Singleton.class) {
+
+                if (instance == null) {
+                    instance = new Singleton();
+                }
+            }
+        }
+
+        return instance;
+    }
+}
+```
+
+---
+
+# Eager Initialization
+
+In this approach, the instance is created **when the class is loaded**.
+
+```java
+class Singleton {
+
+    private static final Singleton instance = new Singleton();
+
+    private Singleton() {}
+
+    public static Singleton getInstance() {
+        return instance;
+    }
+}
+```
+
+Advantage:
+
+* Thread safe
+
+Disadvantage:
+
+* Instance is created even if it is **never used**
 
 ---
 
 # Real World Example
 
-## Database Connection
+## Logger System
 
-Creating multiple database connections is expensive.
-So we use Singleton to maintain **one shared connection**.
+A logging system should use a **single logger instance** across the entire application.
 
-```python
-class DatabaseConnection:
-    _instance = None
+```java
+class Logger {
 
-    def __new__(cls):
-        if cls._instance is None:
-            print("Connecting to database...")
-            cls._instance = super().__new__(cls)
-        return cls._instance
+    private static Logger instance;
 
+    private Logger() {}
 
-db1 = DatabaseConnection()
-db2 = DatabaseConnection()
+    public static Logger getInstance() {
 
-print(db1 is db2)
+        if (instance == null) {
+            instance = new Logger();
+        }
+
+        return instance;
+    }
+
+    public void log(String message) {
+        System.out.println("LOG: " + message);
+    }
+}
 ```
 
-Output
+Usage:
 
-```
-Connecting to database...
-True
+```java
+Logger logger = Logger.getInstance();
+logger.log("Application started");
 ```
 
 ---
 
 # Advantages
 
+* Ensures a **single instance**
 * Saves memory
-* Ensures a single source of truth
-* Easy global access
-* Prevents multiple object creation
+* Provides a **global access point**
+* Useful for shared resources
 
 ---
 
 # Disadvantages
 
-* Harder to test (unit testing)
-* Can introduce global state issues
-* Thread safety issues in multithreading
+* Harder to unit test
+* Global state can create hidden dependencies
+* Thread safety must be handled carefully
 
 ---
 
 # Common Use Cases
 
-| Use Case              | Reason                |
-| --------------------- | --------------------- |
-| Logger                | Single logging object |
-| Database connection   | Expensive resource    |
-| Configuration manager | Shared settings       |
-| Cache manager         | Shared cache          |
+| Use Case              | Reason                  |
+| --------------------- | ----------------------- |
+| Logger                | Single logging instance |
+| Database Connection   | Expensive resource      |
+| Configuration Manager | Shared configuration    |
+| Cache Manager         | Shared cache            |
 
 ---
 
 # Conclusion
 
-The **Singleton Design Pattern** ensures that a class has only one instance and provides a global access point to it.
+The **Singleton Design Pattern** ensures that a class has only **one instance** and provides a **global access point** to it.
 
 It is useful when:
 
 * Only one object should exist
 * The object must be shared across the application
+* The resource is expensive to create
 
 ---
