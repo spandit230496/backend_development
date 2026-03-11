@@ -600,3 +600,551 @@ Steps for designing systems:
 
 
 
+------------------------------------------------------------------------------
+
+
+# 🚀 Design Patterns with Real World Use Cases
+
+This repository provides a **complete overview of all 23 Gang of Four (GoF) Design Patterns** along with their **real-world system design use cases**.
+
+Design patterns help developers build **scalable, maintainable, and reusable software systems** and are frequently asked in **Low-Level Design (LLD) interviews**.
+
+---
+
+# 📚 Table of Contents
+
+1. Creational Design Patterns
+2. Structural Design Patterns
+3. Behavioral Design Patterns
+4. One Page Interview Cheat Sheet
+
+---
+
+# 1️⃣ Creational Design Patterns
+
+Creational patterns focus on **object creation mechanisms**.
+
+---
+
+## Singleton Pattern
+
+Ensures **only one instance of a class exists**.
+
+### Use Cases
+
+* Logger
+* Configuration Manager
+* Database Connection Pool
+* Cache Manager
+* Thread Pool
+* ID Generator in URL Shortener
+
+### Example
+
+```java
+public class Singleton {
+
+    private static Singleton instance;
+
+    private Singleton(){}
+
+    public static Singleton getInstance(){
+        if(instance == null){
+            instance = new Singleton();
+        }
+        return instance;
+    }
+}
+```
+
+---
+
+## Factory Method Pattern
+
+Creates objects **without exposing the creation logic**.
+
+### Use Cases
+
+* Payment gateway creation
+* Notification services
+* Parser creation (JSON/XML)
+* Document processors
+
+### Example
+
+```java
+interface Payment {
+    void pay();
+}
+
+class UpiPayment implements Payment {
+    public void pay() {
+        System.out.println("Paying using UPI");
+    }
+}
+
+class PaymentFactory {
+    public static Payment getPayment(String type) {
+        if(type.equals("UPI")) return new UpiPayment();
+        return null;
+    }
+}
+```
+
+---
+
+## Abstract Factory Pattern
+
+Creates **families of related objects**.
+
+### Use Cases
+
+* Cloud provider SDKs
+* UI frameworks
+* Database drivers
+
+Example:
+
+```
+AWSFactory → S3, EC2
+GCPFactory → GCS, Compute Engine
+AzureFactory → Blob, VM
+```
+
+---
+
+## Builder Pattern
+
+Constructs **complex objects step by step**.
+
+### Use Cases
+
+* SQL Query Builder
+* HTTP Request Builder
+* Configuration Objects
+* Docker Image Builder
+
+Example:
+
+```
+HttpRequest request = HttpRequest.builder()
+                    .url("api.com")
+                    .method("GET")
+                    .build();
+```
+
+---
+
+## Prototype Pattern
+
+Creates new objects **by cloning existing objects**.
+
+### Use Cases
+
+* Game objects
+* Template documents
+* Virtual machine templates
+* Kubernetes pod templates
+
+---
+
+# 2️⃣ Structural Design Patterns
+
+Structural patterns deal with **class composition and relationships**.
+
+---
+
+## Adapter Pattern
+
+Allows **incompatible interfaces to work together**.
+
+### Use Cases
+
+* Payment gateway adapters
+* Legacy system integration
+* Charger adapters
+
+Example:
+
+```
+StripeAdapter
+PaypalAdapter
+RazorpayAdapter
+```
+
+---
+
+## Bridge Pattern
+
+Separates **abstraction from implementation**.
+
+### Use Cases
+
+* Notification systems
+* Messaging services
+* Database drivers
+
+Example:
+
+```
+Notification
+ ├ Email
+ ├ SMS
+ └ Push
+```
+
+---
+
+## Composite Pattern
+
+Treats **individual objects and groups uniformly**.
+
+### Use Cases
+
+* File systems
+* Organization hierarchies
+* UI component trees
+
+Example:
+
+```
+Folder
+ ├ File
+ └ Folder
+```
+
+---
+
+## Decorator Pattern
+
+Adds functionality **dynamically**.
+
+### Use Cases
+
+* HTTP middleware
+* Logging wrappers
+* Compression
+* Encryption
+
+Example:
+
+```
+Request → Logging → Authentication → Handler
+```
+
+---
+
+## Facade Pattern
+
+Provides **simple interface to complex subsystems**.
+
+### Use Cases
+
+* API Gateway
+* Payment gateway SDK
+* Library wrappers
+
+Example:
+
+```
+PaymentFacade
+ ├ Fraud Check
+ ├ Payment Processing
+ └ Notification
+```
+
+---
+
+## Flyweight Pattern
+
+Reduces memory usage by **sharing common objects**.
+
+### Use Cases
+
+* Map markers
+* Game engines
+* Text editors
+* Icon rendering
+
+---
+
+## Proxy Pattern
+
+Provides **controlled access to another object**.
+
+### Use Cases
+
+* Redis caching
+* CDN proxy
+* Lazy loading
+* Security proxy
+
+Example:
+
+```
+Client → Cache Proxy → Database
+```
+
+---
+
+# 3️⃣ Behavioral Design Patterns
+
+Behavioral patterns focus on **communication between objects**.
+
+---
+
+## Chain of Responsibility Pattern
+
+Passes request through **a chain of handlers**.
+
+### Use Cases
+
+* Logging frameworks
+* API Gateway filters
+* Middleware pipelines
+
+Example:
+
+```
+Auth → Rate Limit → Logging → Handler
+```
+
+---
+
+## Command Pattern
+
+Encapsulates **requests as objects**.
+
+### Use Cases
+
+* Task queues
+* Job schedulers
+* Undo/Redo functionality
+
+Example:
+
+```
+SendEmailCommand
+ProcessPaymentCommand
+GenerateReportCommand
+```
+
+---
+
+## Interpreter Pattern
+
+Evaluates **language grammar expressions**.
+
+### Use Cases
+
+* SQL engines
+* Rule engines
+* Query languages
+
+---
+
+## Iterator Pattern
+
+Traverses collections **without exposing internal structure**.
+
+### Use Cases
+
+* Database cursors
+* Streams
+* Collection frameworks
+
+Example:
+
+```
+Java Iterator
+Python Generators
+```
+
+---
+
+## Mediator Pattern
+
+Centralizes **communication between objects**.
+
+### Use Cases
+
+* Chat servers
+* Event systems
+* Air traffic control systems
+
+Example:
+
+```
+ChatServer manages communication between users
+```
+
+---
+
+## Memento Pattern
+
+Stores **object snapshots**.
+
+### Use Cases
+
+* Undo functionality
+* Version control
+* Game save states
+
+---
+
+## Observer Pattern
+
+Defines **publish-subscribe relationship**.
+
+### Use Cases
+
+* Notification systems
+* Event-driven architectures
+* Stock market updates
+
+Example:
+
+```
+User subscribes → receives notification when event occurs
+```
+
+---
+
+## State Pattern
+
+Changes object behavior **based on state**.
+
+### Use Cases
+
+* Order lifecycle
+* Ride lifecycle
+* Document workflows
+
+Example:
+
+```
+Order
+ ├ Created
+ ├ Paid
+ ├ Shipped
+ └ Delivered
+```
+
+---
+
+## Strategy Pattern
+
+Encapsulates **multiple algorithms**.
+
+### Use Cases
+
+* Payment methods
+* Pricing strategies
+* Sorting algorithms
+
+Example:
+
+```
+PaymentStrategy
+ ├ UPI
+ ├ Card
+ └ Wallet
+```
+
+---
+
+## Template Method Pattern
+
+Defines **algorithm skeleton in base class**.
+
+### Use Cases
+
+* Frameworks
+* Data pipelines
+* Testing frameworks
+
+Example:
+
+```
+DataPipeline
+   extract()
+   transform()
+   load()
+```
+
+---
+
+## Visitor Pattern
+
+Separates algorithm **from object structure**.
+
+### Use Cases
+
+* Compilers
+* AST processing
+* Document processors
+
+---
+
+# ⭐ One Page Interview Cheat Sheet
+
+| Pattern                 | Real System Example     |
+| ----------------------- | ----------------------- |
+| Singleton               | Logger, Config Manager  |
+| Factory                 | Payment creation        |
+| Abstract Factory        | Cloud SDK               |
+| Builder                 | HTTP request builder    |
+| Prototype               | VM template             |
+| Adapter                 | Payment gateway adapter |
+| Bridge                  | Notification system     |
+| Composite               | File system             |
+| Decorator               | Middleware              |
+| Facade                  | API Gateway             |
+| Flyweight               | Map markers             |
+| Proxy                   | Redis cache             |
+| Chain of Responsibility | Middleware pipeline     |
+| Command                 | Job queues              |
+| Interpreter             | SQL engine              |
+| Iterator                | DB cursor               |
+| Mediator                | Chat server             |
+| Memento                 | Undo system             |
+| Observer                | Notification system     |
+| State                   | Order lifecycle         |
+| Strategy                | Payment methods         |
+| Template Method         | Data pipeline           |
+| Visitor                 | Compiler                |
+
+---
+
+# 🎯 Most Important Patterns for LLD Interviews
+
+The following **7 patterns appear in ~80% of real systems**:
+
+```
+Singleton
+Factory
+Strategy
+Observer
+Decorator
+Facade
+Proxy
+```
+
+Mastering these patterns will cover most **backend and LLD interview scenarios**.
+
+---
+
+# 📌 Recommended Practice
+
+Try implementing these design problems:
+
+* Vending Machine
+* Parking Lot
+* LRU Cache
+* Splitwise
+* Notification System
+* Ride Sharing System
+* Payment System
+* Chat Application
+
+These problems help apply **multiple design patterns together**.
