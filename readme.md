@@ -1150,10 +1150,6 @@ Try implementing these design problems:
 These problems help apply **multiple design patterns together**.
 
 
-
-
-=====================================================================================================================================================
-
 ---
 
 
@@ -1171,3 +1167,21 @@ These problems help apply **multiple design patterns together**.
 | Booking System | BookMyShow |
 
 ---
+
+Requirements 
+↓ 
+Scale Estimation 
+↓ 
+API Design 
+↓ 
+High-Level Architecture 
+↓ 
+Database Design 
+↓
+Component Design 
+↓ 
+Scaling Strategy 
+↓ 
+Reliability 
+↓ 
+Bottlenecks & Improvements
