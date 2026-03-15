@@ -1168,20 +1168,20 @@ These problems help apply **multiple design patterns together**.
 
 ---
 
-Requirements 
-↓ 
-Scale Estimation 
-↓ 
-API Design 
-↓ 
-High-Level Architecture 
-↓ 
-Database Design 
-↓
-Component Design 
-↓ 
-Scaling Strategy 
-↓ 
-Reliability 
-↓ 
-Bottlenecks & Improvements
+- Requirements 
+
+- Scale Estimation 
+ 
+- API Design 
+ 
+- High-Level Architecture 
+ 
+- Database Design 
+
+- Component Design 
+ 
+- Scaling Strategy 
+ 
+- Reliability 
+
+- Bottlenecks & Improvements
