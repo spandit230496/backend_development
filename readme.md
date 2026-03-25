@@ -1148,3 +1148,50 @@ Try implementing these design problems:
 * Chat Application
 
 These problems help apply **multiple design patterns together**.
+
+
+---
+
+
+Sl no | Category              | Example System     |
+------| --------------------- | ------------------ |
+1| URL Shortener         | Bitly              |
+2| Chat System           | WhatsApp           |
+3| Social Feed           | Instagram          |
+4| Streaming             | YouTube            |
+5| Ride Hailing          | Uber               |
+6| Food Delivery         | Zomato             |
+7| File Storage          | Dropbox            |
+8| Search Engine         | Google Search      |
+9| Notification System   | Push Notifications |
+10| Booking System        | BookMyShow         |
+11| Distributed Cache     | Redis              |
+12| Rate Limiter          | Cloudflare         |
+13| Logging System        | ELK                |
+14| Distributed Queue     | Kafka              |
+15| Recommendation System | Netflix            |
+16| Payment System        | Stripe             |
+17| Web Crawler           | Google             |
+18| Collaborative Editing | Google Docs        |
+19| CDN                   | Cloudflare         |
+
+
+---
+
+- Requirements 
+
+- Scale Estimation 
+ 
+- API Design 
+ 
+- High-Level Architecture 
+ 
+- Database Design 
+
+- Component Design 
+ 
+- Scaling Strategy 
+ 
+- Reliability 
+
+- Bottlenecks & Improvements
