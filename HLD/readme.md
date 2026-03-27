@@ -230,6 +230,14 @@ Balanced    → MySQL, PostgreSQL, MongoDB
 - Design Workflow/Approval System  
 - Design Multi-tenant SaaS system  
 
+## 🧑‍💻 Collaborative & Productivity Systems
+- Design Canva (real-time design tool)
+- Design Google Docs (real-time collaborative editor)
+- Design Google Sheets
+- Design Figma
+- Design Notion
+- Design Dropbox Paper
+
 
 
 # 🧠 Types of Databases & Their Features
