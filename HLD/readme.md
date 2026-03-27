@@ -233,6 +233,22 @@ Balanced    → MySQL, PostgreSQL, MongoDB
 
 
 # 🧠 Types of Databases & Their Features
+## 📊 Database Selection by Feature
+
+| Functionality | Best DB | Type | Why |
+|--------------|--------|------|-----|
+| User Profile | PostgreSQL / MySQL | SQL | Strong consistency, structured data |
+| Authentication | PostgreSQL | SQL | ACID, security critical |
+| Tweets (Posts) | Cassandra / DynamoDB | NoSQL | High write throughput, scalable |
+| Feed | Redis (Cache) + Cassandra | Cache + NoSQL | Fast reads, precomputed feeds |
+| Follow System | Graph DB (Neo4j) / Cassandra | Graph / NoSQL | Relationship-heavy queries |
+| Likes | Cassandra / DynamoDB | NoSQL | Massive writes, simple schema |
+| Comments | MongoDB / Cassandra | NoSQL | Flexible schema, high writes |
+| Notifications | Kafka + Redis | Queue + Cache | Async processing, real-time |
+| Media (Images/Videos) | S3 (Object Storage) | Blob Storage | Store large files efficiently |
+| Search | Elasticsearch | Search Engine | Full-text search, fast queries |
+| Analytics | BigQuery / Snowflake | Data Warehouse | Heavy read analytics |
+
 
 ---
 
