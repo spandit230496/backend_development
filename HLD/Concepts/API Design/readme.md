@@ -299,4 +299,22 @@ GET /users?page=1&limit=10
 - PUT/PATCH = Update
 - DELETE = Delete
 
-That's your **CRUD** mapped to HTTP methods. 🎯
+# API Protocol Comparison: REST vs gRPC vs SOAP
+
+## Feature Comparison
+
+| Feature         | REST          | gRPC              | SOAP             |
+|-----------------|---------------|-------------------|------------------|
+| **Protocol**    | HTTP 1.1      | HTTP/2            | HTTP/SMTP/TCP    |
+| **Format**      | JSON / XML    | Binary (Protobuf) | XML only         |
+| **Speed**       | Moderate      | Fast              | Slow             |
+| **Streaming**   | No            | Yes               | No               |
+| **Browser support** | Yes       | Limited           | Yes              |
+| **Use case**    | Public APIs   | Microservices     | Enterprise       |
+| **Learning curve** | Low        | Medium            | High             |
+
+## Simple Rule of Thumb
+
+- **External / public API** → REST
+- **Internal services needing speed** → gRPC
+- **Enterprise / legacy / banking systems** → SOAP
