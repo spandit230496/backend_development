@@ -2,10 +2,10 @@
 
 If you see:
 
-"contiguous"
-"maximum sum"
-"subarray"
-"continuous window"
+- "contiguous"
+- "maximum sum"
+- "subarray"
+- "continuous window"
 
 👉 Immediately think: Kadane
 
