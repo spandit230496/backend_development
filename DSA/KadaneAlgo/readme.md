@@ -1,3 +1,19 @@
+🧠 When Should YOU Think of Kadane?
+
+If you see:
+
+"contiguous"
+"maximum sum"
+"subarray"
+"continuous window"
+
+👉 Immediately think: Kadane
+
+⚡ Simple Intuition (Golden Line)
+
+“If the running sum becomes negative, drop it — it will only reduce future profit.”
+
+
 🔹 Core Idea
 
 Instead of checking all subarrays (which is slow), Kadane’s algorithm decides at each index:
