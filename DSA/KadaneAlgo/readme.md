@@ -1,3 +1,11 @@
+🔹 Core Idea
+
+Instead of checking all subarrays (which is slow), Kadane’s algorithm decides at each index:
+
+👉 “Should I extend the current subarray or start a new one from here?”
+
+
+
 🟢 Core Problem (Must Do)
 1. Maximum Subarray (#53)
 
