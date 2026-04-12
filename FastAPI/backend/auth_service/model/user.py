@@ -12,6 +12,7 @@ class User(SQLModel, table=True):
     gender: Optional[Gender] = None
     phone: str
     email: str
+    password:str = None
 
     dob: Optional[date] = None
     user_image_url: Optional[str] = None
